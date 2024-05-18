@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7944161436406252447}
   m_Layer: 0
   m_Name: Estrela
-  m_TagString: Untagged
+  m_TagString: Estrela
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f85de4bf9eccc941b96856668bb5a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cor: {fileID: 2100000, guid: c66e05af6abea834289d1bb5e2ceea6b, type: 2}
+  MaterialBase: {fileID: 2100000, guid: 73626b00746c1ad41b06a259f64b997e, type: 2}
+  CorCorpo: {fileID: 6757826519686247776}
