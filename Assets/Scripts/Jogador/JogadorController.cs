@@ -19,6 +19,7 @@ public class JogadorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("Musica").GetComponent<AudioSource>().UnPause();
         CameraMorte.gameObject.SetActive(false);
         Tamanho = 1f;
         TempoEstado = 0f;
@@ -101,6 +102,7 @@ public class JogadorController : MonoBehaviour
                 {
                     Vencendo = true;
                     ControladorVitoria.enabled = true;
+                    GameObject.Find("Musica").GetComponent<AudioSource>().Pause();
                 }
             }
 

@@ -10,6 +10,8 @@ public class VitoriaController : MonoBehaviour
 
     [SerializeField] private float TempoInicial, TempoDuracao, DuracaoTransicao;
 
+    [SerializeField] AudioSource AudioDistor, AudioQuebrar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class VitoriaController : MonoBehaviour
         }
         else
         {
-            ControladorMecanicaPrincipal.Calor = Random.Range(4, 23);
+            ControladorMecanicaPrincipal.Calor = Random.Range(4, 23);   
         }
 
         ControladorMecanicaPrincipal.Crescer();
@@ -34,8 +36,10 @@ public class VitoriaController : MonoBehaviour
         if (Time.time > TempoInicial + TempoDuracao)
         {
             Tela.color += new Color(0, 0, 0, 1f / DuracaoTransicao * Time.deltaTime);
+            AudioDistor.gameObject.SetActive(false);
+            AudioQuebrar.gameObject.SetActive(true);
         }
-        if (Time.time >= TempoInicial + DuracaoTransicao + TempoDuracao)
+        if (Time.time >= TempoInicial + DuracaoTransicao + TempoDuracao && !AudioQuebrar.isPlaying)
         {
             GameObject.FindGameObjectWithTag("GameController").GetComponent<ControladorFimDeJogo>().Venceu();
         }
@@ -45,10 +49,13 @@ public class VitoriaController : MonoBehaviour
     {
         ControladorMecanicaPrincipal.Calor = 1f;
         TempoInicial = Time.time;
+        AudioDistor.gameObject.SetActive(true);
+        AudioDistor.Play();
     }
 
     private void OnDisable()
     {
         Tela.color = new Color(1, 1, 1, 0);
+        AudioDistor.gameObject.SetActive(false);
     }
 }

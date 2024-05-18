@@ -11,6 +11,8 @@ public class EndingController : MonoBehaviour
     [SerializeField] GameObject Tela;
     private float UltimoSalto;
 
+    [SerializeField] AudioSource AudioBoom;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,22 +25,17 @@ public class EndingController : MonoBehaviour
     {
         Cam.orthographicSize += (10 + 0.1f * Cam.orthographicSize) * Time.deltaTime;
 
-        if (Time.timeSinceLevelLoad >= UltimoSalto)
+        if (Cam.orthographicSize >= 2000)
+        {
+            Tela.SetActive(true);
+            if (!AudioBoom.isPlaying)
+                SceneManager.LoadScene(0);
+        }
+        else if (Time.timeSinceLevelLoad >= UltimoSalto)
         {
             Cam.orthographicSize *= 1.3f;
             UltimoSalto += 2f;
+            AudioBoom.Play();
         }
-        if(Cam.orthographicSize >= 2000)
-        {
-            Tela.SetActive(true);
-            StartCoroutine(Sleep(2));
-        }
-    }
-
-    IEnumerator Sleep(float Tempo)
-    {
-        yield return new WaitForSeconds(Tempo);
-
-        SceneManager.LoadScene(0);
     }
 }

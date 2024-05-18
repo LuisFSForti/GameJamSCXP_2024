@@ -11,6 +11,7 @@ public class BtnsController : MonoBehaviour
     {
         Menu.gameObject.SetActive(true);
         Controles.gameObject.SetActive(false);
+        GameObject.Find("Musica").GetComponent<AudioSource>().UnPause();
     }
 
     public void Jogar()
